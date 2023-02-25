@@ -5,3 +5,7 @@ fetch("https://pokeapi.co/api/v2/pokemon/charmander/")
 //   console.log(85 * .22) //! WEIGHT CONVERSION
 
 // console.log(6 * .32) //! Height Conversion
+
+//? add evos
+//? add weakness
+//? description about it
