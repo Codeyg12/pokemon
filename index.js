@@ -7,7 +7,7 @@ fetch("https://pokeapi.co/api/v2/pokemon/charmander/")
       imageFront: data.sprites.front_default,
       imageBack: data.sprites.back_default,
       height: data.height,
-      type: data.types[0].type.name
+      type: data.types[0]
     }
 
     console.log(obj)
