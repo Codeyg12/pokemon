@@ -1,6 +1,8 @@
-fetch("https://pokeapi.co/api/v2/pokemon/charmander/")
+async function searchForPokemon() {
+  await fetch("https://pokeapi.co/api/v2/pokemon/6/")
   .then((response) => response.json())
   .then((data) => {
+    console.log(data)
     let obj = {
       name: data.name,
       weight: data.weight,
@@ -12,6 +14,12 @@ fetch("https://pokeapi.co/api/v2/pokemon/charmander/")
 
     console.log(obj)
   });
+
+}
+
+const searchBtn = document.querySelector('.btn')
+
+searchBtn.addEventListener('click', searchForPokemon)
 
 //   console.log(85 * .22) //! WEIGHT CONVERSION
 
