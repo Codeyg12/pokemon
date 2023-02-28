@@ -5,6 +5,8 @@ let evos = document.querySelector('.evos')
 let weakness = document.querySelector('.weakness')
 let weight = document.querySelector('.weight')
 let height = document.querySelector('.height')
+let frontImage = document.querySelector('#pokemon-front')
+let backImage = document.querySelector('#pokemon-back')
 let obj
 
 async function searchForPokemon(e) {
