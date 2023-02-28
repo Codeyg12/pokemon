@@ -1,15 +1,20 @@
 let search = document.querySelector('#pokemon-name')
-
+let name = document.querySelector('.name')
+let type = document.querySelector('.type')
+let evos = document.querySelector('.evos')
+let weakness = document.querySelector('.weakness')
+let weight = document.querySelector('.weight')
+let height = document.querySelector('.height')
+let obj
 
 async function searchForPokemon(e) {
   let value = search.value
-  console.log("🚀 ~ file: index.js:6 ~ searchForPokemon ~ value:", value)
   e.preventDefault()
   await fetch(`https://pokeapi.co/api/v2/pokemon/${value}/`)
   .then((response) => response.json())
   .then((data) => {
     console.log(data)
-    let obj = {
+    obj = {
       name: data.name,
       weight: data.weight,
       imageFront: data.sprites.front_default,
@@ -20,7 +25,7 @@ async function searchForPokemon(e) {
 
     console.log(obj)
   });
-
+  
 }
 
 const searchBtn = document.querySelector('.btn')
