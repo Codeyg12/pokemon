@@ -1,6 +1,11 @@
+let search = document.querySelector('#pokemon-name')
+
+
 async function searchForPokemon(e) {
-  console.log(e)
-  await fetch("https://pokeapi.co/api/v2/pokemon/6/")
+  let value = search.value
+  console.log("🚀 ~ file: index.js:6 ~ searchForPokemon ~ value:", value)
+  e.preventDefault()
+  await fetch(`https://pokeapi.co/api/v2/pokemon/${value}/`)
   .then((response) => response.json())
   .then((data) => {
     console.log(data)
