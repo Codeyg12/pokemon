@@ -53,5 +53,42 @@ function capitalize(name) {
 // }
 
 function makeTypeEmblems(type) {
-  console.log(type)
+  switch (type) {
+    case 'fire':
+      break;
+    case 'dark':
+      break;
+    case 'electric':
+      break;
+    case 'fairy':
+      break;
+    case 'fighting':
+      break;
+    case 'ground':
+      break;
+    case 'ice':
+      break;
+    case 'poison':
+      break;
+    case 'psychic':
+      break;
+    case 'rock':
+      break;
+    case 'steel':
+      break;
+    case 'water':
+      break;
+    case 'dragon':
+      break;
+    case 'grass':
+      break;
+    case 'bug':
+      break;
+    case 'flying':
+      break;
+    case 'ghost':
+      break;
+    default:
+      break;
+  }
 }
