@@ -27,7 +27,8 @@ async function searchForPokemon(e) {
     }
     name.innerHTML = capitalize(obj.name)
     type1.src = makeTypeEmblems(obj.type1)
-    type2.src = makeTypeEmblems(obj.type2)
+    if (obj.type2) type2.src = makeTypeEmblems(obj.type2)
+    else type2.src = ''
     console.log(obj)
   });
   
@@ -106,8 +107,10 @@ function makeTypeEmblems(type) {
     case 'ghost':
       return 'icons/Ghost.png'
       break;
-    default:
+    case 'normal':
       return 'icons/Normal.png'
+      break;
+    default:
       break;
   }
 }
