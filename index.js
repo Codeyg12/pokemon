@@ -39,3 +39,9 @@ searchBtn.addEventListener('click', searchForPokemon)
 // console.log(6 * .32) //! Height Conversion
 
 //? description about it
+
+function capitalize(name) {
+  return name.charAt(0).toUpperCase() + name.slice(1, name.length)
+}
+
+console.log(capitalize('rayquaza') )
