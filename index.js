@@ -26,7 +26,8 @@ async function searchForPokemon(e) {
       type2: data?.types[1]?.type.name
     }
     name.innerHTML = capitalize(obj.name)
-    makeTypeEmblems(obj.type1)
+    type1.src = makeTypeEmblems(obj.type1)
+    type2.src = makeTypeEmblems(obj.type2)
     console.log(obj)
   });
   
@@ -55,6 +56,7 @@ function capitalize(name) {
 function makeTypeEmblems(type) {
   switch (type) {
     case 'fire':
+      return `icons/105px-FireIC.png`
       break;
     case 'dark':
       break;
@@ -85,6 +87,7 @@ function makeTypeEmblems(type) {
     case 'bug':
       break;
     case 'flying':
+      return `icons/105px-FlyingIC.png`
       break;
     case 'ghost':
       break;
