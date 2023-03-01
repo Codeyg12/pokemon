@@ -7,6 +7,8 @@ let weight = document.querySelector('.weight')
 let height = document.querySelector('.height')
 let frontImage = document.querySelector('#pokemon-front')
 let backImage = document.querySelector('#pokemon-back')
+let heightSpan = document.querySelector('#height-span')
+let weightSpan = document.querySelector('#weight-span')
 let obj
 
 async function searchForPokemon(e) {
@@ -29,6 +31,7 @@ async function searchForPokemon(e) {
     type1.src = makeTypeEmblems(obj.type1)
     if (obj.type2) type2.src = makeTypeEmblems(obj.type2)
     else type2.src = ''
+    weightSpan.innerHTML = `${obj.weight * .22} lbs`
     console.log(obj)
   });
   
@@ -37,8 +40,6 @@ async function searchForPokemon(e) {
 const searchBtn = document.querySelector('.btn')
 
 searchBtn.addEventListener('click', searchForPokemon)
-
-//   console.log(85 * .22) //! WEIGHT CONVERSION
 
 // console.log(6 * .32) //! Height Conversion
 
