@@ -26,9 +26,8 @@ async function searchForPokemon(e) {
       type2: data?.types[1]?.type.name
     }
     name.innerHTML = capitalize(obj.name)
-
+    makeTypeEmblems(obj.type1)
     console.log(obj)
-    searchForEvos(obj.id)
   });
   
 }
@@ -47,8 +46,12 @@ function capitalize(name) {
   return name.charAt(0).toUpperCase() + name.slice(1, name.length)
 }
 
-function searchForEvos(id) {
-  fetch(`https://pokeapi.co/api/v2/evolution-chain/${id}/`)
-  .then(res => res.json())
-  .then(data => console.log(data))
+// function searchForEvos(id) {
+//   fetch(`https://pokeapi.co/api/v2/evolution-chain/${id}/`)
+//   .then(res => res.json())
+//   .then(data => console.log(data))
+// }
+
+function makeTypeEmblems(type) {
+  console.log(type)
 }
