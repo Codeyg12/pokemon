@@ -15,8 +15,8 @@ async function searchForPokemon(e) {
   await fetch(`https://pokeapi.co/api/v2/pokemon/${value}/`)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data)
     obj = {
+      id: data.id,
       name: data.name,
       weight: data.weight,
       imageFront: data.sprites.front_default,
@@ -28,6 +28,7 @@ async function searchForPokemon(e) {
     name.innerHTML = capitalize(obj.name)
 
     console.log(obj)
+    searchForEvos(obj.id)
   });
   
 }
@@ -46,4 +47,8 @@ function capitalize(name) {
   return name.charAt(0).toUpperCase() + name.slice(1, name.length)
 }
 
-console.log(capitalize('rayquaza') )
+function searchForEvos(id) {
+  fetch(`https://pokeapi.co/api/v2/evolution-chain/${id}/`)
+  .then(res => res.json())
+  .then(data => console.log(data))
+}
