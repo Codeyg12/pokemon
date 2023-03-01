@@ -56,42 +56,58 @@ function capitalize(name) {
 function makeTypeEmblems(type) {
   switch (type) {
     case 'fire':
-      return `icons/105px-FireIC.png`
+      return 'icons/Fire.png'
       break;
     case 'dark':
+      return 'icons/Dark.png'
       break;
     case 'electric':
+      return 'icons/Electric.png'
       break;
     case 'fairy':
+      return 'icons/Fairy.png'
       break;
     case 'fighting':
+      return 'icons/Fighting.png'
       break;
     case 'ground':
+      return 'icons/Ground.png'
       break;
     case 'ice':
+      return 'icons/Ice.png'
       break;
     case 'poison':
+      return 'icons/Poison.png'
       break;
     case 'psychic':
+      return 'icons/Psychic.png'
       break;
     case 'rock':
+      return 'icons/Rock.png'
       break;
     case 'steel':
+      return 'icons/Steel.png'
       break;
     case 'water':
+      return 'icons/Water.png'
       break;
     case 'dragon':
+      return 'icons/Dragon.png'
       break;
     case 'grass':
+      return 'icons/Grass.png'
       break;
     case 'bug':
+      return 'icons/Bug.png'
       break;
     case 'flying':
-      return `icons/105px-FlyingIC.png`
+      return `icons/Flying.png`
       break;
     case 'ghost':
+      return 'icons/Ghost.png'
       break;
     default:
+      return 'icons/Normal.png'
       break;
   }
 }
