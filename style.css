@@ -9,7 +9,7 @@
 
 .pokedex {
   border: 1px solid black;
-  background-color: rgb(233, 57, 57);
+  /* background-color: rgb(233, 57, 57); */
   width: 450px;
   height: 575px;
   position: absolute;

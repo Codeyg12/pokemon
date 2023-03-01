@@ -22,8 +22,10 @@ async function searchForPokemon(e) {
       imageFront: data.sprites.front_default,
       imageBack: data.sprites.back_default,
       height: data.height,
-      type: data.types[0]
+      type1: data.types[0].type.name,
+      type2: data?.types[1]?.type.name
     }
+    name.innerHTML = capitalize(obj.name)
 
     console.log(obj)
   });
