@@ -32,7 +32,7 @@ async function searchForPokemon(e) {
     if (obj.type2) type2.src = makeTypeEmblems(obj.type2)
     else type2.src = ''
     weightSpan.innerHTML = `${obj.weight * .22} lbs`
-    console.log(obj)
+    heightSpan.innerHTML = heightConversion(obj.height)
   });
   
 }
@@ -115,3 +115,14 @@ function makeTypeEmblems(type) {
       break;
   }
 }
+
+function heightConversion(n) {
+  n = n * .32
+  
+  let num = n.toString()
+  console.log(num)
+  num = num.split('.')
+  let inch = Math.round((num[1] * 12) / 100)
+  console.log(Math.round(inch))
+}
+console.log(.44 * 12)
