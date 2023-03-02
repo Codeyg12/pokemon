@@ -96,3 +96,7 @@ label {
 button {
   height: 25px;
 }
+
+.hidden {
+  display: none;
+}

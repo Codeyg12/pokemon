@@ -34,8 +34,14 @@ async function searchForPokemon(e) {
     weightSpan.innerHTML = `${obj.weight * .22} lbs`
     heightSpan.innerHTML = heightConversion(obj.height)
     frontImage.src = obj.imageFront
-    if (obj.imageBack) backImage.src = obj.imageBack
-    else backImage.src = ''
+    if (obj.imageBack) {
+      backImage.src = obj.imageBack
+      backImage.classList.remove('hidden')
+    }
+    else {
+      backImage.src = ''
+      backImage.classList.add('hidden')
+    }
   });
   
 }
