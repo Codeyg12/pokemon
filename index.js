@@ -33,6 +33,9 @@ async function searchForPokemon(e) {
     else type2.src = ''
     weightSpan.innerHTML = `${obj.weight * .22} lbs`
     heightSpan.innerHTML = heightConversion(obj.height)
+    frontImage.src = obj.imageFront
+    if (obj.imageBack) backImage.src = obj.imageBack
+    else backImage.src = ''
   });
   
 }
@@ -116,13 +119,9 @@ function makeTypeEmblems(type) {
 
 function heightConversion(n) {
   n = (n * .32).toFixed(2)
-  console.log(n)
   let num = n.toString()
   num = num.split('.')
   let inch = Math.round((num[1] * 12) / 100)
-  console.log(num)
-  console.log(inch)
   let newNum = `${num[0]}' ${inch}"`
-  console.log(newNum)
   return newNum
 }
