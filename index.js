@@ -41,8 +41,6 @@ const searchBtn = document.querySelector('.btn')
 
 searchBtn.addEventListener('click', searchForPokemon)
 
-// console.log(6 * .32) //! Height Conversion
-
 //? description about it
 
 function capitalize(name) {
@@ -118,11 +116,9 @@ function makeTypeEmblems(type) {
 
 function heightConversion(n) {
   n = n * .32
-  
   let num = n.toString()
-  console.log(num)
   num = num.split('.')
   let inch = Math.round((num[1] * 12) / 100)
-  console.log(Math.round(inch))
+  let newNum = `${num[0]}' ${inch}"`
+  return newNum
 }
-console.log(.44 * 12)
