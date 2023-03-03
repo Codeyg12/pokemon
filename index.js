@@ -10,6 +10,7 @@ let backImage = document.querySelector('#pokemon-back')
 let heightSpan = document.querySelector('#height-span')
 let weightSpan = document.querySelector('#weight-span')
 let obj
+let shiny = false
 
 async function searchForPokemon(e) {
   let value = search.value
@@ -25,7 +26,9 @@ async function searchForPokemon(e) {
       imageBack: data.sprites.back_default,
       height: data.height,
       type1: data.types[0].type.name,
-      type2: data?.types[1]?.type.name
+      type2: data?.types[1]?.type.name,
+      shinyFront: data.sprites.front_shiny,
+      shinyBack: data.sprites.back_shiny
     }
     name.innerHTML = capitalize(obj.name)
     type1.src = makeTypeEmblems(obj.type1)
@@ -131,3 +134,29 @@ function heightConversion(n) {
   let newNum = `${num[0]}' ${inch}"`
   return newNum
 }
+
+btn.addEventListener('click', () => {
+  shiny = !shiny
+  if (shiny) {
+    if (!obj.shinyFront) return 
+      frontImage.src = obj.shinyFront
+    if (obj.shinyBack) {
+      backImage.src = obj.shinyBack
+      backImage.classList.remove('hidden')
+    }
+    else {
+      backImage.src = ''
+      backImage.classList.add('hidden')
+    }
+  } else {
+    frontImage.src = obj.imageFront
+    if (obj.imageBack) {
+      backImage.src = obj.imageBack
+      backImage.classList.remove('hidden')
+    }
+    else {
+      backImage.src = ''
+      backImage.classList.add('hidden')
+    }
+  }
+})
