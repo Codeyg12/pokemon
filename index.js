@@ -1,3 +1,4 @@
+let idNum = document.querySelector('#id-num')
 let search = document.querySelector('#pokemon-name')
 let name = document.querySelector('.name')
 let type = document.querySelector('.type')
@@ -30,6 +31,7 @@ async function searchForPokemon(e) {
       shinyFront: data.sprites.front_shiny,
       shinyBack: data.sprites.back_shiny
     }
+    idNum.innerHTML = `#${obj.id}`
     name.innerHTML = capitalize(obj.name)
     type1.src = makeTypeEmblems(obj.type1)
     if (obj.type2) type2.src = makeTypeEmblems(obj.type2)
