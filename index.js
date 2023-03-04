@@ -120,10 +120,8 @@ function makeTypeEmblems(type) {
     case 'ghost':
       return 'icons/Ghost.png'
       break;
-    case 'normal':
-      return 'icons/Normal.png'
-      break;
     default:
+      return 'icons/Normal.png'
       break;
   }
 }
