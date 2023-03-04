@@ -86,7 +86,12 @@ header > h1 {
 
 form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  position: relative;
+  top:  100px;
+  width: 30%;
+  text-align: center;
+  gap: 10px;
 }
 
 input {
