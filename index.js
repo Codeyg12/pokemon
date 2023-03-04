@@ -23,11 +23,11 @@ async function searchForPokemon(e) {
       id: data.id,
       name: data.name,
       weight: data.weight,
-      imageFront: data.sprites.front_default,
-      imageBack: data.sprites.back_default,
       height: data.height,
       type1: data.types[0].type.name,
       type2: data?.types[1]?.type.name,
+      imageFront: data.sprites.front_default,
+      imageBack: data.sprites.back_default,
       shinyFront: data.sprites.front_shiny,
       shinyBack: data.sprites.back_shiny
     }
