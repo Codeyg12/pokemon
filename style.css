@@ -86,9 +86,9 @@ header > h1 {
 
 form {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
   position: relative;
-  top:  100px;
+  top: 200px;
   width: 30%;
   text-align: center;
   gap: 10px;

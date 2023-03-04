@@ -135,7 +135,8 @@ function heightConversion(n) {
   return newNum
 }
 
-btn.addEventListener('click', () => {
+btn.addEventListener('click', (e) => {
+  e.preventDefault()
   shiny = !shiny
   if (shiny) {
     if (!obj.shinyFront) return 
