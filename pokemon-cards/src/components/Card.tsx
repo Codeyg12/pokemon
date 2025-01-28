@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import pokemonCard from "../../../icons/pokemon-card.png";
+import pokemonCard from "../../../assets/pokemon-card.png";
 import {
   generateRandomGradients,
   getTypeAndBackground,
@@ -7,9 +7,12 @@ import {
 } from "../utils.ts";
 import { Pokemon } from "../types/Pokemon.ts";
 import StatsBanner from "./StatsBanner.tsx";
+import { usePokemon } from "../PokemonContext.tsx";
 
 // TODO 1: Make background and stats permanent after initial render
 // TODO 2: Add a flip animation to the back of the card
+// TODO 3: Disable button of Pokemon is already in team
+
 
 interface CardProps {
   pokemon: Pokemon;
@@ -22,6 +25,8 @@ const Card = ({ pokemon, shiny }: CardProps) => {
   const [selected, setSelected] = useState<boolean>(false);
   const [background, setBackground] = useState<string>("bg-gray-300");
   const [color, setColor] = useState<string>("rgba(169, 169, 169, 1)");
+
+  const { state, dispatch } = usePokemon() || {};
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -57,6 +62,22 @@ const Card = ({ pokemon, shiny }: CardProps) => {
   //     {pokemonData && (
   //       <div className="container border w-[30%] h-[40rem] rounded-lg bg-yellow-300 flex justify-center items-center" onClick={(e) => flipCard(e)}>
 
+  const handleAddToTeam = () => {
+    setSelected(!selected);
+    if (dispatch && pokemonData) {
+      if (state.some((p) => p.id === pokemonData.id) || state.length >= 6) {
+        return;
+      }
+      dispatch({
+        type: "ADD_POKEMON",
+        payload: {
+          name: pokemonData.name,
+          id: pokemonData.id,
+        },
+      });
+      console.log(state);
+    }
+  };
 
 
   return (
@@ -115,7 +136,7 @@ const Card = ({ pokemon, shiny }: CardProps) => {
                   </>
                 ))}
               </div>
-              <button className="relative bottom-[-20px] outline px-4 py-2 rounded-lg hover:outline-white hover:text-white cursor-pointer" onClick={() => setSelected(!selected)}>Add to Team</button>
+              <button className="relative bottom-[-20px] outline px-4 py-2 rounded-lg hover:outline-white hover:text-white cursor-pointer" onClick={handleAddToTeam}>Add to Team</button>
             </div>
           </div>
           {/* <div className="container w-[500px] h-[500px] rounded-lg bg-yellow-300 flex justify-center items-center">
