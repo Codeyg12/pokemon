@@ -10,7 +10,6 @@ import StatsBanner from "./StatsBanner.tsx";
 
 // TODO 1: Make background and stats permanent after initial render
 // TODO 2: Add a flip animation to the back of the card
-// TODO 3: Fix background gradient to be more consistent maybe removd color in utils
 
 interface CardProps {
   pokemon: Pokemon;
@@ -21,6 +20,8 @@ const Card = ({ pokemon, shiny }: CardProps) => {
   const [pokemonData, setPokemonData] = useState<Pokemon | null>(null);
   const [flipped, setFlipped] = useState<boolean>(false);
   const [selected, setSelected] = useState<boolean>(false);
+  const [background, setBackground] = useState<string>("bg-gray-300");
+  const [color, setColor] = useState<string>("rgba(169, 169, 169, 1)");
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -30,6 +31,15 @@ const Card = ({ pokemon, shiny }: CardProps) => {
     };
     fetchPokemon();
   }, []);
+
+  useEffect(() => {
+    if (pokemonData) {
+      const { background: bgData, color: colorData } = getTypeAndBackground(pokemonData.types[0].type.name);
+      setBackground(bgData);
+      setColor(generateRandomGradients(colorData));
+    }
+  }, [pokemonData]);
+
 
   // console.log("POKEMONDATA: ", pokemonData);
   // console.log("POKEMONDATA: ", pokemonData?.types[0]?.type.name);
@@ -47,9 +57,7 @@ const Card = ({ pokemon, shiny }: CardProps) => {
   //     {pokemonData && (
   //       <div className="container border w-[30%] h-[40rem] rounded-lg bg-yellow-300 flex justify-center items-center" onClick={(e) => flipCard(e)}>
 
-  const { background, color } = pokemonData
-    ? getTypeAndBackground(pokemonData.types[0].type.name)
-    : { background: "bg-gray-300", color: "rgba(169, 169, 169, 1)" };
+
 
   return (
     <>
@@ -57,7 +65,7 @@ const Card = ({ pokemon, shiny }: CardProps) => {
         <>
           <div className="container border-[20px] border-yellow-300 w-[30%] h-[40rem] rounded-lg flex justify-center items-center">
             <div
-              style={{ background: generateRandomGradients(color) }}
+              style={{ background: color }}
               className={`container border w-full h-full text-center bg-opacity-85`}
             >
               <header className="flex justify-between items-center px-2 h-20">
