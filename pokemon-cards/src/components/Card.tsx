@@ -121,6 +121,17 @@ const getBackgroundStyle = (type: string) => {
     }
 };
 
+const generateRandomGradients = () =>  {
+  const gradients = [];
+  for (let i = 0; i < 100; i++) {
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      const color = i % 2 === 0 ? 'rgba(211,211,211,1)' : 'rgba(50,205,50,1)';
+      gradients.push(`radial-gradient(circle at ${x}% ${y}%, ${color} 0%, ${color.replace('1)', '0)')} 20%)`);
+  }
+  return gradients.join(', ');
+}
+
 const padWithZeroes = (num: number) => {
   return num.toString().padStart(3, "0");
 };
@@ -141,13 +152,27 @@ const Card = ({ pokemon, shiny }: CardProps) => {
   // console.log("POKEMONDATA: ", pokemonData);
   // console.log("POKEMONDATA: ", pokemonData?.types[0]?.type.name);
 
+  // const flipCard = (e: React.MouseEvent<HTMLDivElement>) => {
+  //   (e.currentTarget as HTMLDivElement).style.transform = "rotate(180deg)";
+  // }
+
+  // https://codepen.io/desandro/pen/LmWoWe
+
+  // const backgroundStyle = pokemonData ? getBackgroundStyle(pokemonData.types[0].type.name) : "bg-gray-300";
+
+  // return (
+  //   <>
+  //     {pokemonData && (
+  //       <div className="container border w-[30%] h-[40rem] rounded-lg bg-yellow-300 flex justify-center items-center" onClick={(e) => flipCard(e)}>
+
+
   const backgroundStyle = pokemonData ? getBackgroundStyle(pokemonData.types[0].type.name) : "bg-gray-300";
 
   return (
     <>
       {pokemonData && (
         <div className="container border w-[30%] h-[40rem] rounded-lg bg-yellow-300 flex justify-center items-center">
-          <div className={`container border w-[90%] h-[90%] text-center ${backgroundStyle} bg-opacity-85 rounded-lg`}>
+          <div style={{ background: generateRandomGradients()}} className={`container border w-[90%] h-[90%] text-center ${backgroundStyle} bg-opacity-85 rounded-lg`}>
             <header className="flex justify-between items-center px-2 h-20">
               <h2 className="text-2xl font-bold">
                 {pokemonData.name.charAt(0).toUpperCase() +
@@ -167,7 +192,7 @@ const Card = ({ pokemon, shiny }: CardProps) => {
                 </div>
               </div>
             </header>
-            <div className={`border w-4/5 h-1/2 mx-auto mt-2 shadow-lg ${backgroundStyle} bg-opacity-5`}>
+            <div className={`border w-4/5 h-1/2 mx-auto mt-2 shadow-lg ${backgroundStyle} `}>
             <button onClick={() => setFlipped(!flipped)}>Flip</button>
               <img
                 className={"mx-auto h-full"}
