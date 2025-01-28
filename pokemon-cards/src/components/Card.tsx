@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
 import pokemonCard from "../../../icons/pokemon-card.png";
-import { generateRandomGradients, getTypeAndBackground } from "../utils.ts";
+import {
+  generateRandomGradients,
+  getTypeAndBackground,
+  multipleOfFive,
+} from "../utils.ts";
 import { Pokemon } from "../types/Pokemon.ts";
 import StatsBanner from "./StatsBanner.tsx";
+
+// TODO 1: Make background and stats permanent after initial render
+// TODO 2: Add a flip animation to the back of the card
+// TODO 3: Fix background gradient to be more consistent maybe removd color in utils
 
 interface CardProps {
   pokemon: Pokemon;
@@ -12,6 +20,7 @@ interface CardProps {
 const Card = ({ pokemon, shiny }: CardProps) => {
   const [pokemonData, setPokemonData] = useState<Pokemon | null>(null);
   const [flipped, setFlipped] = useState<boolean>(false);
+  const [selected, setSelected] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -38,18 +47,18 @@ const Card = ({ pokemon, shiny }: CardProps) => {
   //     {pokemonData && (
   //       <div className="container border w-[30%] h-[40rem] rounded-lg bg-yellow-300 flex justify-center items-center" onClick={(e) => flipCard(e)}>
 
-  const backgroundStyle = pokemonData
-    ? getTypeAndBackground(pokemonData.types[0].type.name).background
-    : "bg-gray-300";
+  const { background, color } = pokemonData
+    ? getTypeAndBackground(pokemonData.types[0].type.name)
+    : { background: "bg-gray-300", color: "rgba(169, 169, 169, 1)" };
 
   return (
     <>
       {pokemonData && (
         <>
-          <div className="container border w-[30%] h-[40rem] rounded-lg bg-yellow-300 flex justify-center items-center">
+          <div className="container border-[20px] border-yellow-300 w-[30%] h-[40rem] rounded-lg flex justify-center items-center">
             <div
-              style={{ background: generateRandomGradients() }}
-              className={`container border w-[90%] h-[90%] text-center ${backgroundStyle} bg-opacity-85`}
+              style={{ background: generateRandomGradients(color) }}
+              className={`container border w-full h-full text-center bg-opacity-85`}
             >
               <header className="flex justify-between items-center px-2 h-20">
                 <h2 className="text-2xl font-bold">
@@ -71,11 +80,11 @@ const Card = ({ pokemon, shiny }: CardProps) => {
                 </div>
               </header>
               <div
-                className={`border w-4/5 h-1/2 mx-auto mt-2 shadow-lg ${backgroundStyle} `}
+                className={`border w-4/5 h-1/2 mx-auto mt-2 shadow-lg ${background} `}
               >
                 <button onClick={() => setFlipped(!flipped)}>Flip</button>
                 <img
-                  className={"mx-auto h-full"}
+                  className={"mx-auto h-full " + (selected && "dancing")}
                   src={
                     flipped
                       ? shiny
@@ -89,14 +98,16 @@ const Card = ({ pokemon, shiny }: CardProps) => {
                 />
               </div>
               <StatsBanner pokemonData={pokemonData} />
-              <div>
-                <h3>Moves:</h3>
-                <ul>
-                  {pokemonData.moves.slice(0, 2).map((moveObj, index) => (
-                    <li key={index}>{moveObj.move.name}</li>
-                  ))}
-                </ul>
+                <h3 className="mt-2 font-extrabold">MOVES: </h3>
+              <div className="grid grid-cols-2 gap-2 font-semibold uppercase mx-10">
+                {pokemonData.moves.slice(0, 2).map((moveObj, index) => (
+                  <>
+                    <p className="justify-self-start" key={index}>{moveObj.move.name}</p>
+                    <p className="justify-self-end">{multipleOfFive()}</p>
+                  </>
+                ))}
               </div>
+              <button className="relative bottom-[-20px] outline px-4 py-2 rounded-lg hover:outline-white hover:text-white cursor-pointer" onClick={() => setSelected(!selected)}>Add to Team</button>
             </div>
           </div>
           {/* <div className="container w-[500px] h-[500px] rounded-lg bg-yellow-300 flex justify-center items-center">

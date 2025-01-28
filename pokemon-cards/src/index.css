@@ -22,3 +22,25 @@ h1 {
 .banner-gradient {
     background: linear-gradient(90deg, rgb(134, 134, 134) 0%, rgb(236, 192, 116) 10%, rgb(236, 192, 116) 90%,  rgba(134, 134, 134, 1) 100%);
 }
+
+.dancing {
+    animation: dance 1s 2;
+}
+
+@keyframes dance {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
