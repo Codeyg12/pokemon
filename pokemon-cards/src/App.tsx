@@ -17,6 +17,8 @@ function App() {
   }, [])
 
   // console.log(pokemon);
+  // TODO: Add React Router for all, single, different gens, team, and battles
+  // TODO: Add a searchbar to filter through the Pokémon by name or dex number
 
   const count = pokemonCount(state)
 

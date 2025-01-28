@@ -24,7 +24,7 @@ h1 {
 }
 
 .dancing {
-    animation: dance 1s 2;
+    animation: dance .7s 1.5;
 }
 
 @keyframes dance {
