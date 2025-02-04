@@ -29,6 +29,7 @@ const Card = ({ pokemon, shiny }: CardProps) => {
   const [onTeam, setOnTeam] = useState<boolean>(false);
 
   const { state, dispatch } = usePokemon() || {};
+console.log("URL: ", pokemon.url);
 
   useEffect(() => {
     const fetchPokemon = async () => {

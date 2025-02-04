@@ -23,7 +23,7 @@ const Home = () => {
 
 
   return (
-      <div className='bg-gradient-to-br from-slate-500 to-white-500 min-h-screen'>
+      <div>
         <h1>Pokémon Cards</h1>
         <div className='flex justify-between gap-2 sticky top-2'>
           <button className='border rounded-md p-2 mx-2 hover:bg-slate-50' onClick={() => setShiny(!shiny)}>Make Shiny</button>
