@@ -26,6 +26,7 @@ const Card = ({ pokemon, shiny }: CardProps) => {
   const [selected, setSelected] = useState<boolean>(false);
   const [background, setBackground] = useState<string>("bg-gray-300");
   const [color, setColor] = useState<string>("rgba(169, 169, 169, 1)");
+  const [onTeam, setOnTeam] = useState<boolean>(false);
 
   const { state, dispatch } = usePokemon() || {};
 
@@ -37,6 +38,7 @@ const Card = ({ pokemon, shiny }: CardProps) => {
     };
     fetchPokemon();
   }, []);
+
 
   useEffect(() => {
     if (pokemonData) {
@@ -76,20 +78,35 @@ const Card = ({ pokemon, shiny }: CardProps) => {
           id: pokemonData.id,
         },
       });
+      setOnTeam(true);
       console.log(state);
     }
   };
+
+  const handleRemoveFromTeam = () => {
+    if (dispatch && pokemonData) {
+      dispatch({
+        type: "REMOVE_POKEMON",
+        payload: {
+          name: pokemonData.name,
+          id: pokemonData.id,
+        },
+      })
+      setOnTeam(false);
+    }
+  }
 
 
   return (
     <>
       {pokemonData && (
         <>
-          <Link className="container border-[20px] border-yellow-300 w-[30%] h-[40rem] rounded-lg flex justify-center items-center" to={`/${pokemonData.id}`}>
+          <div className="container border-[20px] border-yellow-300 w-[30%] h-[40rem] rounded-lg flex justify-center items-center">
             <div
               style={{ background: color }}
               className={`container border w-full h-full text-center bg-opacity-85`}
             >
+              <Link to={`/${pokemonData.id}`}>
               <header className="flex justify-between items-center px-2 h-20">
                 <h2 className="text-2xl font-bold">
                   {pokemonData.name.charAt(0).toUpperCase() +
@@ -109,6 +126,7 @@ const Card = ({ pokemon, shiny }: CardProps) => {
                   </div>
                 </div>
               </header>
+              </Link>
               <div
                 className={`border w-4/5 h-1/2 mx-auto mt-2 shadow-lg ${background} `}
               >
@@ -137,9 +155,9 @@ const Card = ({ pokemon, shiny }: CardProps) => {
                   </>
                 ))}
               </div>
-              <button className="relative bottom-[-20px] outline px-4 py-2 rounded-lg hover:outline-white hover:text-white cursor-pointer" onClick={handleAddToTeam}>Add to Team</button>
+              <button className="relative bottom-[-20px] outline px-4 py-2 rounded-lg hover:outline-white hover:text-white cursor-pointer" onClick={onTeam ? handleRemoveFromTeam : handleAddToTeam}>{onTeam ? "Remove from" : "Add to"} Team</button>
             </div>
-          </Link>
+          </div>
           {/* <div className="container w-[500px] h-[500px] rounded-lg bg-yellow-300 flex justify-center items-center">
           <img src={pokemonCard} />
         </div> */}
