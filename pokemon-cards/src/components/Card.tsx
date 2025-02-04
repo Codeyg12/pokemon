@@ -8,6 +8,7 @@ import {
 import { Pokemon } from "../types/Pokemon.ts";
 import StatsBanner from "./StatsBanner.tsx";
 import { usePokemon } from "../PokemonContext.tsx";
+import { Link } from "react-router";
 
 // TODO 1: Make background and stats permanent after initial render
 // TODO 2: Add a flip animation to the back of the card
@@ -84,7 +85,7 @@ const Card = ({ pokemon, shiny }: CardProps) => {
     <>
       {pokemonData && (
         <>
-          <div className="container border-[20px] border-yellow-300 w-[30%] h-[40rem] rounded-lg flex justify-center items-center">
+          <Link className="container border-[20px] border-yellow-300 w-[30%] h-[40rem] rounded-lg flex justify-center items-center" to={`/${pokemonData.id}`}>
             <div
               style={{ background: color }}
               className={`container border w-full h-full text-center bg-opacity-85`}
@@ -138,7 +139,7 @@ const Card = ({ pokemon, shiny }: CardProps) => {
               </div>
               <button className="relative bottom-[-20px] outline px-4 py-2 rounded-lg hover:outline-white hover:text-white cursor-pointer" onClick={handleAddToTeam}>Add to Team</button>
             </div>
-          </div>
+          </Link>
           {/* <div className="container w-[500px] h-[500px] rounded-lg bg-yellow-300 flex justify-center items-center">
           <img src={pokemonCard} />
         </div> */}

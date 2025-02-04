@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import Home from "./pages/Home";
 import Squad from "./pages/Squad";
-import SinglePokemon from "./pages/Card";
+import SinglePokemon from "./pages/SinglePokemon";
 
 const App: React.FC = () => (
   <BrowserRouter>
